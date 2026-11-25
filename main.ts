@@ -1,17 +1,9 @@
-import { writeFileSync, mkdirSync } from "node:fs";
-import { join } from "node:path";
+import { mkdirSync, writeFileSync } from "node:fs";
 
+// Two Days of Quiet Dread — one-line code review comment approving a PR
+// with quiet existential dread. Line: 96 characters (gate: 1-140).
 const LINE =
-  "Approved. Clean diff, good tests. It survived three rewrites and a reorg; it will outlive me, and frankly, it deserves to.";
+  "Approved. 0032_user_roles and its 14 tests pass; they'll still pass when my badge stops working.";
 
-if (LINE.length > 140) {
-  throw new Error(`line is ${LINE.length} characters, over the 140 limit`);
-}
-if (LINE.includes("\n") || LINE.includes("\r")) {
-  throw new Error("line must not contain a newline");
-}
-
-const outDir = process.env.MAKEFUN_OUTPUT_DIR ?? ".";
-mkdirSync(outDir, { recursive: true });
-writeFileSync(join(outDir, "entry.txt"), LINE + "\n", "utf8");
-console.log(`wrote ${LINE.length}-character entry to ${join(outDir, "entry.txt")}`);
+mkdirSync("/output", { recursive: true });
+writeFileSync("/output/entry.txt", LINE);
